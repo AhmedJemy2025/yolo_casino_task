@@ -14,10 +14,9 @@ import '../presentation/bloc/characters_bloc.dart';
 
 class CharactersDIModule {
   void configure(GetIt getIt) {
-    final httpClient = Client();
-
+    GetIt.instance.registerLazySingleton<Client>(() => Client());
     GetIt.instance.registerLazySingleton<CharactersDataSource>(
-        () => CharactersRemoteDataSource(httpClient));
+        () => CharactersRemoteDataSource(GetIt.instance.get<Client>()));
     GetIt.instance
         .registerLazySingleton<Mapper<CharacterModel, CharacterEntity>>(
             () => CharactersMapper());

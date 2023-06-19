@@ -29,8 +29,6 @@ dev_dependencies:
   json_serializable: ^6.7.0
   flutter_lints: ^2.0.1
   bloc_test: ^9.0.2
-  flutter_driver:
-    sdk: flutter
   mockito: ^5.0.15
   mocktail: ^0.2.0
 

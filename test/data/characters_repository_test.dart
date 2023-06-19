@@ -54,7 +54,7 @@ void main() {
         .thenAnswer((_) async => Future.value(charactersResponse));
 
     final result = await repository.fetchCharactersList(page);
-    
+
     result.fold((left) => fail("test failed"), (right) {
       expect(right, characters);
     });
@@ -69,7 +69,7 @@ void main() {
 
     result.fold((left) {
       expect(left, const Failure("Server Error"));
-      
+
     }, (right) =>fail('test failed'));
 
   });
