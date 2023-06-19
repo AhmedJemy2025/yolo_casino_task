@@ -8,32 +8,22 @@ import 'package:yolo_casino_task/domain/repositories/i_characters_repository.dar
 
 import '../../core/models/failure.dart';
 
-class CharactersRepositoryImpl extends ICharactersRepository{
+class CharactersRepositoryImpl extends ICharactersRepository {
   final CharactersDataSource dataSource;
 
   CharactersRepositoryImpl(this.dataSource);
 
   @override
-  Future<Either< Failure,List<CharacterEntity>>>fetchCharactersList(int page) async {
-
-    try{
-
-      var mapper =  GetIt.instance.get<Mapper<CharacterModel , CharacterEntity>>();
-
+  Future<Either<Failure, List<CharacterEntity>>> fetchCharactersList(
+      int page) async {
+    try {
+      var mapper =
+          GetIt.instance.get<Mapper<CharacterModel, CharacterEntity>>();
       var response = await dataSource.fetchCharactersList(page);
       var charactersList = mapper.fromModelListToEntityList(response.results);
-
       return Right(charactersList);
-
-    }
-    catch(e){
+    } catch (e) {
       return const Left(Failure("Server Error"));
     }
-
-
-
   }
-
-
-
 }
